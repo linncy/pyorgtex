@@ -14,6 +14,8 @@ Read JSON and convert it into dict.
 Convert dict into json and write it as .json.
 ### extractFilename(path)
 Extract file name from path.
+### eclass2dict(eclassXLSname)
+Read XLS downloaded from eclass and create initial classjson.
 
 ## orgexport
 Evaluate all code blocks and export .org as PDF/HTML/LaTeX/ASCII .
@@ -28,7 +30,7 @@ Evaluate all code blocks and export .org as ASCII.
 
 ## generate
 Generate desired files for reproducible research in batches.
-### generate_from_csv(CSVname,ORGname,format='pdf')
-Read CSV and generate files according to CSV.
+### generate_from_classjson(JSONname,ORGname,exportformat='pdf',dirname='./',dependencylist=[])
+Read classjson and generate files according to classjson.
 ### generate_from_par(dictPar,ORGname,format='pdf',dirname='./',dependencylist=[])
 Generate files according to given dictPar.
