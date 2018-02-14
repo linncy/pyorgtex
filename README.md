@@ -15,7 +15,7 @@ Convert dict into json and write it as .json.
 ### extractFilename(path)
 Extract file name from path.
 ### eclass2dict(eclassXLSname)
-Read XLS downloaded from eclass and create initial classjson.
+Read XLS downloaded from eclass and create initial classdict. This dict should be converted into classjson later on.
 
 ## orgexport
 Evaluate all code blocks and export .org as PDF/HTML/LaTeX/ASCII .
