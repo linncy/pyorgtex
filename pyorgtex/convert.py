@@ -1,5 +1,6 @@
 #coding=utf-8
 import sys,os,re,csv,json
+
 def csv2dict(CSVname):
 	if not os.path.isfile(CSVname):
 		print("csv2list Error: " + FDFname + " doesn't exist")
@@ -7,9 +8,11 @@ def csv2dict(CSVname):
 	newdict={}
 	with open(CSVname, "r") as csvfile:
 		csvreader = csv.reader(csvfile, delimiter=';', quotechar='\n')
+		print csvreader.next()
 		for eachrow in csvreader:
 			newdict[eachrow[0]]=eachrow[1]
 	return newdict
+
 def fdf2csv(FDFname):
 	if not os.path.isfile(FDFname):
 		print("fdf2csv Error: " + FDFname + " doesn't exist")
@@ -33,18 +36,28 @@ def fdf2csv(FDFname):
 			aRow=[csv_key[i],csv_value[i]]
 			wr.writerow(aRow)
 	csvfile.close()
-	return 1
+	return csv_file
 
 def json2dict(JSONname):
 	if not os.path.isfile(JSONname):
-		print ("readjson Error: " + JSONname + " doesn't exist")
+		print ("json2dict Error: " + JSONname + " doesn't exist")
 		sys.exit()
 	JSON_file=open(JSONname, "r")
 	jsondict=json.loads(JSON_file.read())
 	JSON_file.close()
 	return jsondict
+
 def dict2json(jsondict,JSONname):
 	with open(JSONname, 'w') as jsonfile:
 		json.dump(jsondict, jsonfile)
 	jsonfile.close()
-	return 1
+	return JSONname
+
+def extractFilename(path):
+	if(path==''):
+		return('illegalpath')
+	newlist=re.split('/',path)
+	if(path[-1]=='/'):
+		return newlist[-2]
+	else:
+		return newlist[-1]
