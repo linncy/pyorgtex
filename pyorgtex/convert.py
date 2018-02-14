@@ -1,14 +1,14 @@
 #coding=utf-8
-import sys,os,re,csv,json
+import sys,os,re,csv,json,xlrd
 
 def csv2dict(CSVname):
 	if not os.path.isfile(CSVname):
-		print("csv2list Error: " + FDFname + " doesn't exist")
+		print("csv2list Error: " + CSVname + " doesn't exist")
 		sys.exit()
 	newdict={}
 	with open(CSVname, "r") as csvfile:
 		csvreader = csv.reader(csvfile, delimiter=';', quotechar='\n')
-		print csvreader.next()
+		#print csvreader.next()
 		for eachrow in csvreader:
 			newdict[eachrow[0]]=eachrow[1]
 	return newdict
@@ -61,3 +61,25 @@ def extractFilename(path):
 		return newlist[-2]
 	else:
 		return newlist[-1]
+
+def eclass2dict(eclassXLSname):
+	if not os.path.isfile(eclassXLSname):
+		print("eclass2dict Error: " + eclassXLSname + " doesn't exist")
+		sys.exit()
+	newdict={}
+	eclassXLSdata = xlrd.open_workbook(eclassXLSname)
+	table = eclassXLSdata.sheet_by_index(0) 
+	newdict['term']=table.row_values(0)[0]
+	newdict['course']=table.row_values(0)[1]
+	newdict['classnumber']=table.row_values(2)[1]
+	newdict['numofstu']=table.nrows-2
+	newdict['student']={}
+	for i in range(newdict['numofstu']):
+		newsubdict={}
+		newsubdict['stuid']=table.row_values(i+2)[2]
+		newsubdict['name']=table.row_values(i+2)[4]
+		newsubdict['numofhw']=0
+		newsubdict['finalhwgrade']=-1
+		newsubdict['hw']={}
+		newdict['student'][str(i)]=newsubdict
+	return newdict
