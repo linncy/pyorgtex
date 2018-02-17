@@ -16,6 +16,9 @@ Convert dict into json and write it as .json.
 Extract file name from path.
 ### eclass2dict(eclassXLSname)
 Read XLS downloaded from eclass and create initial classdict. This dict should be converted into classjson later on.
+### extract_data_from_curly_brackets(string)
+Extract data from string which contains curly brackets and return list.
+Eg:'{l}{123}{abc}' -> ['l','123','abc']
 
 ## orgexport
 Evaluate all code blocks and export .org as PDF/HTML/LaTeX/ASCII .

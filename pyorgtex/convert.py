@@ -83,3 +83,8 @@ def eclass2dict(eclassXLSname):
 		newsubdict['hw']={}
 		newdict['student'][str(i)]=newsubdict
 	return newdict
+
+def extract_data_from_curly_brackets(string):
+	pattern = re.compile(r'(?<=\{)[^}]*(?=\})')  
+	result = pattern.findall(string)
+	return result
