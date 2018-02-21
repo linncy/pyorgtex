@@ -62,6 +62,13 @@ def extractFilename(path):
 	else:
 		return newlist[-1]
 
+def splitFilename(filename):
+	if('.' in filename):
+		newlist=re.split('\.',filename)
+		return newlist
+	else:
+		return []
+
 def eclass2dict(eclassXLSname):
 	if not os.path.isfile(eclassXLSname):
 		print("eclass2dict Error: " + eclassXLSname + " doesn't exist")
@@ -70,7 +77,7 @@ def eclass2dict(eclassXLSname):
 	eclassXLSdata = xlrd.open_workbook(eclassXLSname)
 	table = eclassXLSdata.sheet_by_index(0) 
 	newdict['term']=table.row_values(0)[0]
-	newdict['course']=table.row_values(0)[1]
+	newdict['course']=table.row_values(0)[1].replace(' ','')
 	newdict['classnumber']=table.row_values(2)[1]
 	newdict['numofstu']=table.nrows-2
 	newdict['student']={}
