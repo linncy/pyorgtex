@@ -1,7 +1,7 @@
 from subprocess import call
 import sys,os
 #----Define some environmental variables here------#
-EMACS_INIT_PATH='/Users/Lin/.emacs.d/init.el'
+EMACS_INIT_PATH='~/.emacs.d/init.el'
 #--------------------------------------------------#
 def export2pdf(ORGname):
 	if not os.path.isfile(ORGname):
